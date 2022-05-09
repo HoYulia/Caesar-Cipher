@@ -1,0 +1,109 @@
+# Шифр русский алфавит
+from curses.ascii import isalpha
+
+
+n = 10
+s = 'Блажен, кто верует, тепло ему на свете!'
+result = ''
+for c in s:
+    num = ord(c) + n
+    if 1040 <= num <= 1071:
+        if num <= 1071:
+            result += chr(num)
+        else:
+            result += chr(1040 + (num-1071))
+    elif 1071 <= num <= 1103:
+        if num <= 1103:
+            result += chr(num)
+        else:
+            result += chr(1071 + (num-1103))    
+    elif c in ',!@#$%&* ':
+        result += c
+print(result)
+
+# Шифр английский алфавит
+
+n = 17
+s = 'To be, or not to be, that is the question!'
+result = ''
+for c in s:
+    num = ord(c) + n
+    dig = ord(c) 
+    if 65 <= dig <= 90:
+        if num <= 90:
+            result += chr(num)
+        else:
+            result += chr(65 + (num-91))
+    elif 97 <= dig <= 122:
+        if num <= 122:
+            result += chr(num)
+        else:
+            result += chr(97 + (num-123))    
+    elif c in ',!@#$%&* ':
+        result += c
+print(result)
+
+
+# Дешифратор русский язык
+n = 7
+s = 'Шсъцхр щмчжмщ йшм, нмтзж йшм лхшщзщг.'
+result = ''
+for c in s:
+    num = ord(c) - n
+    dig = ord(c)
+    if 1040 <= dig <= 1071:
+        if num >= 1040:
+            result += chr(num)
+        else:
+            result += chr(1072 - (1040-num))
+    elif 1072 <= dig <= 1103:
+        if num >= 1072:
+            result += chr(num)
+        else:
+            result += chr(1104 - (1072-num))    
+    elif c in '.,!@#$%&* ':
+        result += c
+print(result)
+
+# Дешифратор английский язык
+n = 25
+s = 'Sgd fqzrr hr zkvzxr fqddmdq nm sgd nsgdq rhcd ne sgd edmbd.'
+result = ''
+for c in s:
+    num = ord(c) - n
+    dig = ord(c) 
+    if 65 <= dig <= 90:
+        if num >= 65:
+            result += chr(num)
+        else:
+            result += chr(91 - (65-num))
+    elif 97 <= dig <= 122:
+        if num >= 97:
+            result += chr(num)
+        else:
+            result += chr(123 - (97-num))    
+    elif c in '.,!@#$%&* ':
+        result += c
+print(result)
+
+# Дешифратор английский язык (неизвестно шагов)
+s = 'Hawnj pk swhg xabkna ukq nqj.'
+for i in range(26):
+    result = ''
+    n = 0
+    for c in s:
+        num = ord(c) - (n + i)
+        dig = ord(c) 
+        if 65 <= dig <= 90:
+            if num >= 65:
+                result += chr(num)
+            else:
+                result += chr(91 - (65-num))
+        elif 97 <= dig <= 122:
+            if num >= 97:
+                result += chr(num)
+            else:
+                result += chr(123 - (97-num))    
+        elif c in '.,!@#$%&* ':
+            result += c
+    print(i, result, end='\n')
