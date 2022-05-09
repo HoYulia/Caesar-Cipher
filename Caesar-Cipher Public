@@ -1,0 +1,36 @@
+# ввод строки
+s = str(input())
+
+# преобразование строки в список
+lst = [c for c in s.split()]
+
+# создание списка с длинами строк в списке (только буквы)
+s1 = ''
+for i in s:
+    if i in '.,!@#$%&*"':
+        continue
+    s1+=i
+lst1 = [len(c) for c in s1.split()]
+
+# основной код шифра
+end = []
+for i in range(len(lst)):
+    result = ''
+    n = lst1[i]
+    for c in lst[i]:
+        num = ord(c) + n
+        dig = ord(c) 
+        if 65 <= dig <= 90:
+            if num <= 90:
+                result += chr(num)
+            else:
+                result += chr(65 + (num-91))
+        elif 97 <= dig <= 122:
+            if num <= 122:
+                result += chr(num)
+            else:
+                result += chr(97 + (num-123))    
+        elif c in ',!@#$%&*@". ':
+            result += c
+    end.append(result)
+print(' '.join(end))
